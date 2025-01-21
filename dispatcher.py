@@ -8,14 +8,13 @@ load_dotenv()
 class LinkResponse(BaseModel):
     title: str
     summary: str
-    date: str
 
 llm_client = OpenAI(api_key=os.environ.get("OPENAI_TOKEN"))
 def process_link(link):    
     completion = llm_client.beta.chat.completions.parse(
         model="gpt-4o-2024-08-06",
         messages=[
-            {"role": "system", "content": "The following is a link to an article- extract the title and date (MM/YYYY), and provide a paragraph-length summary of the content. Be as neutral as possible while still presenting the facts."},
+            {"role": "system", "content": "The following is a link to an article- extract the title, and provide a paragraph-length summary of the content. Be as neutral as possible while still presenting the facts."},
             {"role": "user", "content": f"{link}"},
         ],
         response_format=LinkResponse,
@@ -36,7 +35,7 @@ def build_embed(link):
     embed = discord.Embed()
     embed.title = additional_info.title
     embed.url = link
-    embed.description = f"_{additional_info.date}_— {additional_info.summary}"
+    embed.description = additional_info.summary
     embed.set_footer(text=link)
     return embed
 
