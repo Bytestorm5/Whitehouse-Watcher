@@ -1,2 +1,2 @@
-source venv/bin/activate
-python3 scraper.py
+source ~/Whitehouse-Watcher/venv/bin/activate
+python3 ~/Whitehouse-Watcher/scraper.py
