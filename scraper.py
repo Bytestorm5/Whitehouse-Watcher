@@ -87,7 +87,7 @@ def main():
             break
         
     # Dispatch Changes
-    subprocess.run([sys.executable, "dispatcher.py"])
+    subprocess.run([sys.executable, "/root/Whitehouse-Watcher/dispatcher.py"])
 
 if __name__ == "__main__":
     main()
