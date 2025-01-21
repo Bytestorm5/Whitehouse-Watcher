@@ -21,7 +21,7 @@ def save_new_links(links):
     Append new links to the file.
     """
     with open(LINKS_FILE, "a", encoding="utf-8") as f:
-        f.write('\n'.join(links))
+        f.write('\n' + '\n'.join(links))
     
     with open("new_links.txt", "a", encoding="utf-8") as f:
         f.write('\n'.join(links))
