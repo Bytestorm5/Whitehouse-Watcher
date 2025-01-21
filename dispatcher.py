@@ -68,6 +68,7 @@ async def on_ready():
         channel_ids = [line.strip() for line in f if line.strip()]
 
     # 3. Post the new links to each channel
+    print("Building Embeds")
     embeds = [build_embed(link) for link in new_links]
     for channel_id_str in channel_ids:
         try:
