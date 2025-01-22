@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 from pydantic import BaseModel
 from openai import OpenAI
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
 load_dotenv()
 
 class LinkResponse(BaseModel):
@@ -24,8 +26,8 @@ def process_link(link):
 # For simplicity here, we store the token in code. In production, consider using environment variables.
 DISCORD_BOT_TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
 
-NEW_LINKS_FILE = "new_links.txt"
-TARGETS_FILE = "targets.txt"
+NEW_LINKS_FILE = os.path.join(script_dir, "new_links.txt")
+TARGETS_FILE = os.path.join(script_dir, "targets.txt")
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)

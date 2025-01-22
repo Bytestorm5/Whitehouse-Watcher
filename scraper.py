@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 import os
 import subprocess
 import sys
-
-LINKS_FILE = "known_links.txt"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+LINKS_FILE = os.path.join(script_dir, "known_links.txt")
 
 def load_known_links(filename):
     """
@@ -23,7 +23,7 @@ def save_new_links(links):
     with open(LINKS_FILE, "a", encoding="utf-8") as f:
         f.write('\n' + '\n'.join(links))
     
-    with open("new_links.txt", "a", encoding="utf-8") as f:
+    with open(os.path.join(script_dir, "new_links.txt"), "a", encoding="utf-8") as f:
         f.write('\n'.join(links))
 
 def get_article_links_from_page(page_html):
@@ -87,7 +87,7 @@ def main():
             break
         
     # Dispatch Changes
-    subprocess.run([sys.executable, "/root/Whitehouse-Watcher/dispatcher.py"])
+    subprocess.run([sys.executable, os.path.join(script_dir, "dispatcher.py")])
 
 if __name__ == "__main__":
     main()
