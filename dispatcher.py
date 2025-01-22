@@ -14,7 +14,7 @@ def process_link(link):
     completion = llm_client.beta.chat.completions.parse(
         model="gpt-4o-2024-08-06",
         messages=[
-            {"role": "system", "content": "The following is a link to an article- extract the title, and provide a paragraph-length summary of the content, and only the content- do not try to contextualize it or put it in frame of broader facts. Maintain the tone and voice of the original content as much as is reasonable."},
+            {"role": "system", "content": "The following is a link to an article- extract the title, and provide a paragraph-length summary of the content, focusing exclusively on the actual policy changes. The reasoning behind it or greater context is entirely irrelevant for our purposes. Use quotes from the article frequently, if and when appropriate."},
             {"role": "user", "content": f"{link}"},
         ],
         response_format=LinkResponse,
