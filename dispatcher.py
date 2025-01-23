@@ -92,6 +92,7 @@ async def on_ready():
 
     # 4. Shutdown the bot
     print("All links posted. Shutting down.")
+    os.remove(NEW_LINKS_FILE)
     await client.close()
 
 if __name__ == "__main__":
