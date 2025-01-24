@@ -5,6 +5,7 @@ import subprocess
 import sys
 script_dir = os.path.dirname(os.path.abspath(__file__))
 LINKS_FILE = os.path.join(script_dir, "known_links.txt")
+NEW_LINKS_FILE = os.path.join(script_dir, "new_links.txt")
 
 def load_known_links(filename):
     """
@@ -23,7 +24,7 @@ def save_new_links(links):
     with open(LINKS_FILE, "a", encoding="utf-8") as f:
         f.write('\n' + '\n'.join(links))
     
-    with open(os.path.join(script_dir, "new_links.txt"), "a", encoding="utf-8") as f:
+    with open(NEW_LINKS_FILE, "a", encoding="utf-8") as f:
         f.write('\n'.join(links))
 
 def get_article_links_from_page(page_html):
@@ -53,7 +54,7 @@ def get_article_links_from_page(page_html):
 def main():
     known_links = load_known_links(LINKS_FILE)
     page_number = 1
-    open('new_links.txt', 'w').close()
+    os.remove(NEW_LINKS_FILE)
     while True:
         url = f"https://www.whitehouse.gov/news/page/{page_number}/"
         print(f"Scraping: {url}")
