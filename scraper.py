@@ -54,7 +54,8 @@ def get_article_links_from_page(page_html):
 def main():
     known_links = load_known_links(LINKS_FILE)
     page_number = 1
-    os.remove(NEW_LINKS_FILE)
+    if os.path.exists(NEW_LINKS_FILE):
+        os.remove(NEW_LINKS_FILE)
     while True:
         url = f"https://www.whitehouse.gov/news/page/{page_number}/"
         print(f"Scraping: {url}")
